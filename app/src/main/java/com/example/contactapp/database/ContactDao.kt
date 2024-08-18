@@ -21,7 +21,7 @@ interface ContactDao {
     @Delete
     suspend fun delete(contacts: Contacts)
 
-    @Query("Select * from contact_table order by id asc")
+    @Query("Select * from contact_table order by id desc")
     fun getAllContacts():LiveData<List<Contacts>>
 
 }

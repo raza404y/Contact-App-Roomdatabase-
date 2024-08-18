@@ -114,12 +114,13 @@ class AddUpdate : AppCompatActivity() {
                 when {
                     name.isEmpty() -> showToast("Enter name")
                     phoneNo.isEmpty() -> showToast("Enter phone number")
-                    name.length <= 3 -> showToast("name greater than 3")
-                    phoneNo.length <= 4 || phoneNo.length >= 15 -> showToast("invalid phone number")
+                    name.length < 3 -> showToast("name greater than 3")
+                    phoneNo.length < 3 || phoneNo.length > 15 -> showToast("invalid phone number")
                     else -> {
                         CoroutineScope(Dispatchers.IO).launch {
                             insertData(name, phoneNo, imageData)
                             withContext(Dispatchers.Main) {
+                                finish()
                                 showToast("Inserted")
                             }
                         }
